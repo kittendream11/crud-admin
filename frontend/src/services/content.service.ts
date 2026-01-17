@@ -42,6 +42,8 @@ export interface ContentQueryParams {
   sortBy?: string;
   sortOrder?: 'ASC' | 'DESC';
   status?: 'draft' | 'published' | 'archived';
+  action?: string;
+  entity?: string;
 }
 
 class ContentService {
@@ -93,6 +95,11 @@ class ContentService {
 
   async deleteCategory(id: string): Promise<void> {
     await apiClient.delete(`/v1/content/categories/${id}`);
+  }
+
+  // Audit Logs
+  async getAuditLogs(params?: ContentQueryParams): Promise<PaginatedResponse<any>> {
+    return apiClient.get('/v1/users/audit-logs', { params });
   }
 }
 

@@ -43,14 +43,14 @@ export default function ArticleDetailPage() {
     reset,
   } = useForm<ArticleFormData>({
     resolver: zodResolver(articleSchema),
-    defaultValues: article ? {
+    defaultValues: article ? ({
       title: article.title,
       slug: article.slug,
       content: article.content,
       description: article.description,
       featuredImage: article.featuredImage || '',
-      tags: article.tags?.join(', ') || '',
-    } : undefined,
+      tags: (Array.isArray(article.tags) ? article.tags.join(', ') : article.tags) || '',
+    } as unknown as ArticleFormData) : undefined,
   });
 
   useEffect(() => {
@@ -61,8 +61,8 @@ export default function ArticleDetailPage() {
         content: article.content,
         description: article.description,
         featuredImage: article.featuredImage || '',
-        tags: article.tags?.join(', ') || '',
-      });
+        tags: (Array.isArray(article.tags) ? article.tags.join(', ') : article.tags) || '',
+      } as unknown as ArticleFormData);
     }
   }, [article, isNew, reset]);
 

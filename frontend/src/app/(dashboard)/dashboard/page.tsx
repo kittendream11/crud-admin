@@ -103,7 +103,7 @@ export default function DashboardPage() {
             Welcome back, {user?.firstName}! 👋
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Here's an overview of your admin dashboard
+            Here&apos;s an overview of your admin dashboard
           </p>
         </div>
 

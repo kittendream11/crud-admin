@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import contentService from '@/services/content.service';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Button from '@/components/Button';
-import Table from '@/components/Table';
+import { Table } from '@/components/Table';
 import toast from 'react-hot-toast';
 
 interface Article {
@@ -169,9 +169,10 @@ export default function ArticlesPage() {
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
           <Table
-            columns={columns}
+            columns={columns as any}
             data={data?.data || []}
             isLoading={isLoading}
+            keyExtractor={(row: any) => row.id}
           />
         </div>
 

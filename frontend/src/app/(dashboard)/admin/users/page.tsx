@@ -3,9 +3,9 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { userService, User } from '@/services/user.service';
-import { ProtectedRoute } from '@/components/ProtectedRoute';
-import { Button } from '@/components/Button';
+import userService from '@/services/user.service';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import Button from '@/components/Button';
 import { Table } from '@/components/Table';
 import toast from 'react-hot-toast';
 import Link from 'next/link';

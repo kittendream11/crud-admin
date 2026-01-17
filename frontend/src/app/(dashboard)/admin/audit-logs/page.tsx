@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import contentService from '@/services/content.service';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Button from '@/components/Button';
-import Table from '@/components/Table';
+import { Table, Column } from '@/components/Table';
 
 interface AuditLog {
   id: string;
@@ -43,7 +43,7 @@ export default function AuditLogsPage() {
       } as any),
   });
 
-  const columns = [
+  const columns: Column<AuditLog>[] = [
     {
       header: 'Action',
       accessor: (row: AuditLog) => (
@@ -125,9 +125,10 @@ export default function AuditLogsPage() {
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-x-auto">
           <Table
-            columns={columns}
+            columns={columns as any}
             data={data?.data || []}
             isLoading={isLoading}
+            keyExtractor={(row: any) => row.id}
           />
         </div>
 
